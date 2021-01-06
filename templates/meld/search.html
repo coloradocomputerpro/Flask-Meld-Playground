@@ -1,0 +1,25 @@
+<div class="py-4">
+    <label>Search typeahead</label><br />
+    <input class="p-2"
+           type="text" 
+           meld:model="state" 
+           meld:keydown.ArrowDown = "select_next" 
+           meld:keydown.ArrowUp = "select_previous" 
+           meld:keydown.Enter = "select_by_index({{selected}})" 
+           placeholder="Start typing a state name" id="state-name"></input>
+        <button meld:click="clear_states" class="ml-2 px-1 border shadow">Clear result</button>
+    <p>
+    {% if not state in states %}
+        {% if states %}
+        <ul class="bg-white w-full">
+            {% for s in states %}
+            <li meld:key="{{s}}" 
+                meld:click="select({{ s }})" 
+                class="p-4
+                    {% if selected == loop.index %}bg-purple-500 text-white{% endif %}" >{{ s }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endif %}
+    </p>
+</div>
