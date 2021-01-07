@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from flask import Flask, request, send_from_directory
 from threading import Lock
 from flask import Flask, render_template, session, request, \
     copy_current_request_context
@@ -42,11 +43,8 @@ def background_thread():
 
 @app.route('/')
 def index():
-    return render_template('index.html', async_mode=socketio.async_mode)
+    return render_template('base.html', async_mode=socketio.async_mode)
 
-@app.route('/meld')
-def meld():
-    return render_template("meld/base.html")
 
 @socketio.event
 def my_event(message):

@@ -1,0 +1,821 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Flask-SocketIO-Meld-Example</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#44056e">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Cabin" />
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+    {% meld_scripts %}
+</head>
+
+<body class="mx-auto leading-normal font-sans text-gray-700 antialiased bg-gray-100">
+
+
+    <div class="container mx-auto h-screen">
+        <div class="flex flex-row justify-center">
+            <!-- Left -->
+            <div class="w-full sm:w-600 h-screen">
+                <!-- Header -->
+                <div
+                    class="flex justify-between items-center border-b border-gray-700 px-4 py-3 sticky top-0 bg-dim-900 border-l border-r border-gray-700">
+                    <!-- Title -->
+                    <h2 class="text-gray-100 font-bold font-sm">Flask-SocketIO Tests</h2>
+                    <!-- /Title -->
+                </div>
+                <!-- /Header -->
+                {% include 'index.html' %}
+            </div>
+            <!-- /Left -->
+
+            <!-- Middle -->
+            <div class="w-full sm:w-600 h-screen">
+                <!-- Header -->
+                <div
+                    class="flex justify-between items-center border-b border-gray-700 px-4 py-3 sticky top-0 bg-dim-900 border-l border-r border-gray-700">
+                    <!-- Title -->
+                    <h2 class="text-gray-100 font-bold font-sm">Flask-Meld Tests</h2>
+                    <!-- /Title -->
+                </div>
+                <!-- /Header -->
+                {% include 'meld/base.html' %}
+
+            </div>
+            <!-- /Middle -->
+
+            <!-- Right -->
+            <div class="hidden md:block w-290 lg:w-350 h-screen">
+
+            </div>
+            <!-- /Right -->
+            <!-- Footer -->
+            <div class="flex-col overflow-y-auto w-290 lg:w-350 h-screen">
+                <footer>
+                    <ul class="text-xs text-gray-500 my-4 mx-2">
+                        <li class="inline-block mx-2">
+                            <a class="hover:underline" href="#">Terms of Service</a>
+                        </li>
+                        <li class="inline-block mx-2">
+                            <a class="hover:underline" href="#">Privacy Policy</a>
+                        </li>
+                        <li class="inline-block mx-2">
+                            <a class="hover:underline" href="#">Cookie Policy</a>
+                        </li>
+                        <li class="inline-block mx-2">
+                            <a class="hover:underline" href="#">More</a>
+                        </li>
+                    </ul>
+                </footer>
+            </div>
+            <!-- /Footer -->
+        </div>
+    </div>
+</body>
+
+<style>
+    /**
+ * Make replaced elements `display: block` by default as that's
+ * the behavior you want almost all of the time. Inspired by
+ * CSS Remedy, with `svg` added as well.
+ *
+ * https://github.com/mozdevs/cssremedy/issues/14
+ */
+
+    img,
+    svg,
+    video,
+    canvas,
+    audio,
+    iframe,
+    embed,
+    object {
+        display: block;
+        vertical-align: middle;
+    }
+
+    /**
+ * Constrain images and videos to the parent width and preserve
+ * their instrinsic aspect ratio.
+ *
+ * https://github.com/mozdevs/cssremedy/issues/14
+ */
+
+    img,
+    video {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    @media (min-width: 614px) {
+        .container {
+            max-width: 614px;
+        }
+    }
+
+    @media (min-width: 1002px) {
+        .container {
+            max-width: 1002px;
+        }
+    }
+
+    @media (min-width: 1022px) {
+        .container {
+            max-width: 1022px;
+        }
+    }
+
+    @media (min-width: 1092px) {
+        .container {
+            max-width: 1092px;
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .container {
+            max-width: 1280px;
+        }
+    }
+
+    /* width */
+
+    ::-webkit-scrollbar {
+        width: 12px;
+        height: 12px;
+    }
+
+    /* Track */
+
+    /* Handle */
+
+    /* Handle on hover */
+
+    .bg-blue-400 {
+        --tw-bg-opacity: 1;
+        background-color: rgba(96, 165, 250, var(--tw-bg-opacity));
+    }
+
+    .bg-dim-400 {
+        --tw-bg-opacity: 1;
+        background-color: rgba(37, 51, 65, var(--tw-bg-opacity));
+    }
+
+    .bg-dim-700 {
+        --tw-bg-opacity: 1;
+        background-color: rgba(25, 39, 52, var(--tw-bg-opacity));
+    }
+
+    .bg-dim-900 {
+        --tw-bg-opacity: 1;
+        background-color: rgba(21, 32, 43, var(--tw-bg-opacity));
+    }
+
+    .hover\:bg-blue-500:hover {
+        --tw-bg-opacity: 1;
+        background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+    }
+
+    .hover\:bg-dim-300:hover {
+        --tw-bg-opacity: 1;
+        background-color: rgba(32, 46, 58, var(--tw-bg-opacity));
+    }
+
+    .hover\:bg-dim-800:hover {
+        --tw-bg-opacity: 1;
+        background-color: rgba(22, 45, 64, var(--tw-bg-opacity));
+    }
+
+    .focus\:bg-dim-900:focus {
+        --tw-bg-opacity: 1;
+        background-color: rgba(21, 32, 43, var(--tw-bg-opacity));
+    }
+
+    .border-gray-600 {
+        --tw-border-opacity: 1;
+        border-color: rgba(75, 85, 99, var(--tw-border-opacity));
+    }
+
+    .border-gray-700 {
+        --tw-border-opacity: 1;
+        border-color: rgba(55, 65, 81, var(--tw-border-opacity));
+    }
+
+    .border-blue-400 {
+        --tw-border-opacity: 1;
+        border-color: rgba(96, 165, 250, var(--tw-border-opacity));
+    }
+
+    .border-dim-200 {
+        --tw-border-opacity: 1;
+        border-color: rgba(56, 68, 77, var(--tw-border-opacity));
+    }
+
+    .border-dim-400 {
+        --tw-border-opacity: 1;
+        border-color: rgba(37, 51, 65, var(--tw-border-opacity));
+    }
+
+    .focus\:border-blue-200:focus {
+        --tw-border-opacity: 1;
+        border-color: rgba(191, 219, 254, var(--tw-border-opacity));
+    }
+
+    .rounded {
+        border-radius: 0.25rem;
+    }
+
+    .rounded-2xl {
+        border-radius: 1rem;
+    }
+
+    .rounded-full {
+        border-radius: 9999px;
+    }
+
+    .border-2 {
+        border-width: 2px;
+    }
+
+    .border {
+        border-width: 1px;
+    }
+
+    .border-r {
+        border-right-width: 1px;
+    }
+
+    .border-b {
+        border-bottom-width: 1px;
+    }
+
+    .border-l {
+        border-left-width: 1px;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    .block {
+        display: block;
+    }
+
+    .inline-block {
+        display: inline-block;
+    }
+
+    .inline {
+        display: inline;
+    }
+
+    .flex {
+        display: flex;
+    }
+
+    .table {
+        display: table;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .flex-row {
+        flex-direction: row;
+    }
+
+    .flex-col {
+        flex-direction: column;
+    }
+
+    .items-center {
+        align-items: center;
+    }
+
+    .justify-center {
+        justify-content: center;
+    }
+
+    .justify-between {
+        justify-content: space-between;
+    }
+
+    .flex-1 {
+        flex: 1 1 0%;
+    }
+
+    .flex-auto {
+        flex: 1 1 auto;
+    }
+
+    .flex-shrink-0 {
+        flex-shrink: 0;
+    }
+
+    .flex-shrink {
+        flex-shrink: 1;
+    }
+
+    .font-normal {
+        font-weight: 400;
+    }
+
+    .font-medium {
+        font-weight: 500;
+    }
+
+    .font-bold {
+        font-weight: 700;
+    }
+
+    .h-4 {
+        height: 1rem;
+    }
+
+    .h-5 {
+        height: 1.25rem;
+    }
+
+    .h-6 {
+        height: 1.5rem;
+    }
+
+    .h-8 {
+        height: 2rem;
+    }
+
+    .h-9 {
+        height: 2.25rem;
+    }
+
+    .h-10 {
+        height: 2.5rem;
+    }
+
+    .h-11 {
+        height: 2.75rem;
+    }
+
+    .h-full {
+        height: 100%;
+    }
+
+    .h-screen {
+        height: 100vh;
+    }
+
+    .text-xs {
+        font-size: 0.75rem;
+        line-height: 1rem;
+    }
+
+    .text-sm {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+
+    .text-base {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    .leading-5 {
+        line-height: 1.25rem;
+    }
+
+    .leading-6 {
+        line-height: 1.5rem;
+    }
+
+    .m-2 {
+        margin: 0.5rem;
+    }
+
+    .my-2 {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .mx-2 {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .my-3 {
+        margin-top: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .my-4 {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .ml-1 {
+        margin-left: 0.25rem;
+    }
+
+    .mr-2 {
+        margin-right: 0.5rem;
+    }
+
+    .ml-2 {
+        margin-left: 0.5rem;
+    }
+
+    .ml-3 {
+        margin-left: 0.75rem;
+    }
+
+    .ml-4 {
+        margin-left: 1rem;
+    }
+
+    .mt-5 {
+        margin-top: 1.25rem;
+    }
+
+    .mb-5 {
+        margin-bottom: 1.25rem;
+    }
+
+    .mb-8 {
+        margin-bottom: 2rem;
+    }
+
+    .mb-10 {
+        margin-bottom: 2.5rem;
+    }
+
+    .mt-auto {
+        margin-top: auto;
+    }
+
+    .focus\:outline-none:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+    }
+
+    .overflow-auto {
+        overflow: auto;
+    }
+
+    .overflow-hidden {
+        overflow: hidden;
+    }
+
+    .overflow-y-auto {
+        overflow-y: auto;
+    }
+
+    .p-2 {
+        padding: 0.5rem;
+    }
+
+    .p-3 {
+        padding: 0.75rem;
+    }
+
+    .p-4 {
+        padding: 1rem;
+    }
+
+    .py-1 {
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+    }
+
+    .py-3 {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .px-4 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .pb-0 {
+        padding-bottom: 0px;
+    }
+
+    .pb-4 {
+        padding-bottom: 1rem;
+    }
+
+    .pl-4 {
+        padding-left: 1rem;
+    }
+
+    .pl-12 {
+        padding-left: 3rem;
+    }
+
+    .pl-16 {
+        padding-left: 4rem;
+    }
+
+    .fixed {
+        position: fixed;
+    }
+
+    .absolute {
+        position: absolute;
+    }
+
+    .relative {
+        position: relative;
+    }
+
+    .sticky {
+        position: -webkit-sticky;
+        position: sticky;
+    }
+
+    .top-0 {
+        top: 0px;
+    }
+
+    .right-0 {
+        right: 0px;
+    }
+
+    .bottom-0 {
+        bottom: 0px;
+    }
+
+    .left-0 {
+        left: 0px;
+    }
+
+    * {
+        --tw-shadow: 0 0 #0000;
+    }
+
+    .shadow {
+        --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    }
+
+    * {
+        --tw-ring-inset: var(--tw-empty,
+                /*!*/
+                /*!*/
+            );
+        --tw-ring-offset-width: 0px;
+        --tw-ring-offset-color: #fff;
+        --tw-ring-color: rgba(59, 130, 246, 0.5);
+        --tw-ring-offset-shadow: 0 0 #0000;
+        --tw-ring-shadow: 0 0 #0000;
+    }
+
+    .text-white {
+        --tw-text-opacity: 1;
+        color: rgba(255, 255, 255, var(--tw-text-opacity));
+    }
+
+    .text-gray-100 {
+        --tw-text-opacity: 1;
+        color: rgba(243, 244, 246, var(--tw-text-opacity));
+    }
+
+    .text-gray-400 {
+        --tw-text-opacity: 1;
+        color: rgba(156, 163, 175, var(--tw-text-opacity));
+    }
+
+    .text-gray-500 {
+        --tw-text-opacity: 1;
+        color: rgba(107, 114, 128, var(--tw-text-opacity));
+    }
+
+    .text-gray-600 {
+        --tw-text-opacity: 1;
+        color: rgba(75, 85, 99, var(--tw-text-opacity));
+    }
+
+    .text-blue-400 {
+        --tw-text-opacity: 1;
+        color: rgba(96, 165, 250, var(--tw-text-opacity));
+    }
+
+    .group:hover .group-hover\:text-gray-300 {
+        --tw-text-opacity: 1;
+        color: rgba(209, 213, 219, var(--tw-text-opacity));
+    }
+
+    .hover\:text-red-600:hover {
+        --tw-text-opacity: 1;
+        color: rgba(220, 38, 38, var(--tw-text-opacity));
+    }
+
+    .hover\:text-green-400:hover {
+        --tw-text-opacity: 1;
+        color: rgba(52, 211, 153, var(--tw-text-opacity));
+    }
+
+    .hover\:text-blue-400:hover {
+        --tw-text-opacity: 1;
+        color: rgba(96, 165, 250, var(--tw-text-opacity));
+    }
+
+    .hover\:underline:hover {
+        text-decoration: underline;
+    }
+
+    .w-4 {
+        width: 1rem;
+    }
+
+    .w-5 {
+        width: 1.25rem;
+    }
+
+    .w-6 {
+        width: 1.5rem;
+    }
+
+    .w-8 {
+        width: 2rem;
+    }
+
+    .w-10 {
+        width: 2.5rem;
+    }
+
+    .w-11 {
+        width: 2.75rem;
+    }
+
+    .w-14 {
+        width: 3.5rem;
+    }
+
+    .w-68 {
+        width: 68px;
+    }
+
+    .w-290 {
+        width: 290px;
+    }
+
+    .w-full {
+        width: 100%;
+    }
+
+    .transition {
+        transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 150ms;
+    }
+
+    .ease-in-out {
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .duration-150 {
+        transition-duration: 150ms;
+    }
+
+    @-webkit-keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @-webkit-keyframes ping {
+
+        75%,
+        100% {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+
+    @keyframes ping {
+
+        75%,
+        100% {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+
+    @-webkit-keyframes pulse {
+        50% {
+            opacity: .5;
+        }
+    }
+
+    @keyframes pulse {
+        50% {
+            opacity: .5;
+        }
+    }
+
+    @-webkit-keyframes bounce {
+
+        0%,
+        100% {
+            transform: translateY(-25%);
+            -webkit-animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+        }
+
+        50% {
+            transform: none;
+            -webkit-animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        }
+    }
+
+    @keyframes bounce {
+
+        0%,
+        100% {
+            transform: translateY(-25%);
+            -webkit-animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+        }
+
+        50% {
+            transform: none;
+            -webkit-animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        }
+    }
+
+    @media (min-width: 614px) {
+        .xs\:w-88 {
+            width: 88px;
+        }
+    }
+
+    @media (min-width: 1002px) {
+        .sm\:w-600 {
+            width: 600px;
+        }
+    }
+
+    @media (min-width: 1022px) {
+        .md\:block {
+            display: block;
+        }
+    }
+
+    @media (min-width: 1092px) {
+        .lg\:w-350 {
+            width: 350px;
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .xl\:block {
+            display: block;
+        }
+
+        .xl\:hidden {
+            display: none;
+        }
+
+        .xl\:justify-start {
+            justify-content: flex-start;
+        }
+
+        .xl\:pr-3 {
+            padding-right: 0.75rem;
+        }
+
+        .xl\:w-275 {
+            width: 275px;
+        }
+
+        .xl\:w-auto {
+            width: auto;
+        }
+
+        .xl\:w-full {
+            width: 100%;
+        }
+    }
+</style>
