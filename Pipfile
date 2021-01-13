@@ -14,7 +14,7 @@ MarkupSafe = "==1.1.0"
 python-engineio = "==4.0.0"
 python-socketio = "==5.0.4"
 Werkzeug = "==0.14.1"
-six = "==1.11.0"
+six = "==1.15.0"
 Flask-Meld = "==0.4.0"
 gevent = "==20.12.1"
 uWSGI = "*"
@@ -48,7 +48,6 @@ urllib3 = "==1.25.8"
 webencodings = "==0.5.1"
 "zope.event" = "==4.5.0"
 "zope.interface" = "==5.2.0"
-uwsgi = "*"
 
 [dev-packages]
 
