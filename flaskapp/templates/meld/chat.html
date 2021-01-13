@@ -1,0 +1,225 @@
+<div class="flex-1 p:2 justify-between flex flex-col h-screen">
+    <div class="flex sm:items-center justify-between p-3 border-b-2 border-gray-200">
+        <div class="flex items-center space-x-4">
+            <div class="flex flex-col leading-tight">
+                <div class="text-2xl mt-1 flex items-center">
+                    <span class="text-gray-700 mr-3">{{ name }}</span>
+                </div>
+                <span class="text-lg text-gray-600">#room</span>
+            </div>
+        </div>
+        <div class="flex items-center space-x-2">
+            <button type="button"
+                class="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="h-6 w-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </button>
+            <button type="button"
+                class="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="h-6 w-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                    </path>
+                </svg>
+            </button>
+            <button type="button"
+                class="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="h-6 w-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div class="flex flex-col space-y-4 p-2 overflow-y-auto" style="margin-bottom: 64px">
+        <div class="flex flex-col flex-auto h-full">
+            <div class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full">
+                <div id="messages"
+                    class="messages flex flex-col h-full overflow-x-auto mb-4 scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
+                    <div class="flex flex-col h-full">
+                        <div class="grid grid-cols-12 gap-y-2">
+
+                            {% if messages %}
+                            <!--current-user-->
+                            <div class="col-start-6 col-end-13 p-3 rounded-lg">
+                                <div class="flex items-center justify-start flex-row-reverse">
+                                    <div class="chat-message">
+                                        <div
+                                            class="flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0">
+                                            {{ name }}
+                                        </div>
+                                        <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+                                            <div>Hello? does this thing work?</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/current-user-->
+                            <!--remote-user-->
+                            <div class="col-start-1 col-end-8 p-3 rounded-lg">
+                                <div class="flex flex-row items-center">
+                                    <div class="chat-message">
+                                        <div
+                                            class="flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0">
+                                            James
+                                        </div>
+                                        <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
+                                            <div>Um, hi? Sort of, it's not real but it should give you some idea of how
+                                                to make your own!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/remote-user-->
+                            {% for message in messages %}
+                            {% if message.valid %}
+                            <!--current-user-->
+                            <div class="col-start-6 col-end-13 p-3 rounded-lg">
+                                <div class="flex items-center justify-start flex-row-reverse">
+                                    <div class="chat-message">
+                                        <div
+                                            class="flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0">
+                                            {{ message.user }}
+                                        </div>
+                                        <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+                                            <div>{{ message.text }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/current-user-->
+                            {% else %}
+                            <!--remote-user-->
+                            <div class="col-start-1 col-end-8 p-3 rounded-lg">
+                                <div class="flex flex-row items-center">
+                                    <div class="chat-message">
+                                        <div
+                                            class="flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0">
+                                            {{ message.user }}
+                                        </div>
+                                        <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
+                                            <div>{{ message.text }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/remote-user-->
+                            {% endif %}
+                            {% endfor %}
+                            {% else %}
+                            <!--current-user-->
+                            <div class="col-start-6 col-end-13 p-3 rounded-lg">
+                                <div class="flex items-center justify-start flex-row-reverse">
+                                    <div class="chat-message">
+                                        <div
+                                            class="flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0">
+                                            {{ name }}
+                                        </div>
+                                        <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+                                            <div>Hello? does this thing work?</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/current-user-->
+                            <!--remote-user-->
+                            <div class="col-start-1 col-end-8 p-3 rounded-lg">
+                                <div class="flex flex-row items-center">
+                                    <div class="chat-message">
+                                        <div
+                                            class="flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0">
+                                            James
+                                        </div>
+                                        <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
+                                            <div>Um, hi? Sort of, it's not real but it should give you some idea of how
+                                                to make your own!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/remote-user-->
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
+                    <div class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
+                        <div>
+                            <button class="flex items-center justify-center text-gray-400 hover:text-gray-600">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="flex-grow ml-4">
+                            <div class="relative w-full">
+                                <input type="text" meld:model.defer="text" meld:keypress.key.enter="send_message"
+                                    placeholder="Say something?"
+                                    class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10" />
+                                <button
+                                    class="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <button meld:click="send_message"
+                                class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0">
+                                <span>Send</span>
+                                <span class="ml-2">
+                                    <svg class="w-4 h-4 transform rotate-45 -mt-px" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var container = document.querySelector('.messages')
+
+    container.maxScrollTop = container.scrollHeight - container.offsetHeight
+
+    $('body').on('DOMSubtreeModified', '#messages', function () {
+
+        if (container.maxScrollTop - container.scrollTop <= container.offsetHeight) {
+            // We can scroll to the bottom.
+            // Setting scrollTop to a high number will bring us to the bottom.
+            // setting its value to scrollHeight seems a good idea, because
+            // scrollHeight is always higher than scrollTop.
+            // However we could use any value (e.g. something like 99999 should be ok) 
+            container.scrollTop = container.scrollHeight
+            console.log("I just scrolled to the bottom!")
+
+        } else {
+            console.log("I won't scroll: you're way too far from the bottom!\n" +
+                "You should maybe alert the user that he received a new message.\n" +
+                "If he wants to scroll at this point, he must do it manually.")
+        }
+
+    });
+
+
+</script>

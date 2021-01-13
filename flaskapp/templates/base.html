@@ -50,11 +50,21 @@
             <!-- /Middle -->
 
             <!-- Right -->
-            <div class="hidden md:block w-290 lg:w-350 h-screen">
+            <div class="w-full sm:w-600 h-screen">
+                <!-- Header -->
+                <div
+                    class="flex justify-between items-center border-b border-gray-700 px-4 py-3 sticky top-0 bg-dim-900 border-l border-r border-gray-700">
+                    <!-- Title -->
+                    <h2 class="text-gray-100 font-bold font-sm">Flask-Meld Chat</h2>
+                    <!-- /Title -->
+                </div>
+                <!-- /Header -->
+                {% meld 'chat' %}
 
             </div>
             <!-- /Right -->
             <!-- Footer -->
+            <!-- #footer disabled
             <div class="flex-col overflow-y-auto w-290 lg:w-350 h-screen">
                 <footer>
                     <ul class="text-xs text-gray-500 my-4 mx-2">
@@ -73,6 +83,7 @@
                     </ul>
                 </footer>
             </div>
+            -->
             <!-- /Footer -->
         </div>
     </div>
