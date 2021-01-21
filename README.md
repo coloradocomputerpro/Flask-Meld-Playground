@@ -46,7 +46,8 @@ pipenv install -r requirements.txt
 pipenv shell
 ```
 
-* 
+> Troubleshooting requirements install errors, first check that six.py is 1.15 or higher. Often this installs as 1.11 and causes package issues where the quick workaround is to manually copy the latest six.py into your virtual enviroments version of ./six.py
+> https://raw.githubusercontent.com/benjaminp/six/master/six.py
 
 At this point you can start your uWSGI server to validate local Meld and SocketIO websockets individually
 * launch uWSGI
