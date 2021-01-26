@@ -59,10 +59,11 @@ You can now open your browser and point it towards 127.0.0.1:8080 or <YOUR_IP:80
 
 
 # NGINX Configuration
-<NGINX_configuration>
+https://gist.github.com/coloradocomputerpro/6389196a74b9878b056f800eb836e751
 
 
 # Example TODO
 
-## Finish documentation
-## Implement a create_app() demonstration vs ./app.py starter
+## Finish documentation (Updated NGINX configuration)
+## Implement a create_app() demonstration vs ./app.py starter (Completed)
+## Add new Meld playground components (Chat added)
